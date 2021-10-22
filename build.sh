@@ -2,5 +2,6 @@
 
 export LDFLAGS="-static"
 
-gcc -c main.c $(python3-config --includes) -static
-gcc -o adios-init main.o $(python3-config --ldflags) -static
+gcc -c main.c $(python3-config --includes)
+
+gcc -o adios-init main.o -static -static-libgcc -static-libstdc++
