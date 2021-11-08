@@ -1,6 +1,17 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 
+int exists(const char *fname)
+{
+    FILE *file;
+    if ((file = fopen(fname, "r")))
+    {
+        fclose(file);
+        return 1;
+    }
+    return 0;
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -12,7 +23,10 @@ main(int argc, char *argv[])
     Py_SetProgramName(program);  /* optional but recommended */
     Py_Initialize();
 
-    FILE* file = fopen("/Adi_OS/init.py", "r");
+    if (exists("/Adi_OS/init.py") == 0) {
+	exit(2);
+    }
+    FILE* file = fopen("/Adi_OS/init.py", "r");
     PyRun_SimpleFile(file, "/Adi_OS/init.py");
 
 
