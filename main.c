@@ -20,12 +20,15 @@ main(int argc, char *argv[])
         fprintf(stderr, "Fatal error: cannot decode argv[0]\n");
         exit(1);
     }
-    Py_SetProgramName(program);  /* optional but recommended */
-    Py_Initialize();
-
+    
     if (exists("/Adi_OS/init.py") == 0) {
 	exit(2);
     }
+
+    Py_SetProgramName(program);  /* optional but recommended */
+    Py_Initialize();
+
+    
     FILE* file = fopen("/Adi_OS/init.py", "r");
     PyRun_SimpleFile(file, "/Adi_OS/init.py");
 
