@@ -1,4 +1,5 @@
 #define PY_SSIZE_T_CLEAN
+#define ADIOS_INIT_LOC "/Adi_OS/init.py"
 #include <Python.h>
 
 int exists(const char *fname)
@@ -21,7 +22,8 @@ main(int argc, char *argv[])
         exit(1);
     }
     
-    if (exists("/Adi_OS/init.py") == 0) {
+    if (exists(ADIOS_INIT_LOC) == 0) {
+	fprintf(stderr,"Fatal error: init script doesn't exist\n");
 	exit(2);
     }
 
@@ -29,8 +31,8 @@ main(int argc, char *argv[])
     Py_Initialize();
 
     
-    FILE* file = fopen("/Adi_OS/init.py", "r");
-    PyRun_SimpleFile(file, "/Adi_OS/init.py");
+    FILE* file = fopen(ADIOS_INIT_LOC, "r");
+    PyRun_SimpleFile(file, ADIOS_INIT_LOC);
 
 
     if (Py_FinalizeEx() < 0) {
