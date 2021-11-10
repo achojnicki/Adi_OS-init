@@ -29,7 +29,7 @@ main(int argc, char *argv[])
     Py_Initialize();
 
     
-    FILE* file = fopen("/Adi_OS/init.py", "r");
+    FILE* file = fopen("/Adi_OS/init.py", "r");
     PyRun_SimpleFile(file, "/Adi_OS/init.py");
 
 
